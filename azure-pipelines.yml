@@ -12,6 +12,7 @@ steps:
     
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
   displayName: 'Terraform : INIT'
+  workingDirectory: '$(System.DefaultWorkingDirectory)\terraform'
   inputs:
     backendServiceArm: 'jonwterraformsp-ARM'
     backendAzureRmResourceGroupName: 'RG-Terraform'
