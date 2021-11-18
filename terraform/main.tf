@@ -13,6 +13,11 @@ terraform {
 
 }
 
+# Configure the Microsoft Azure Provider
+provider "azurerm" {
+  features {}
+}
+
 resource "azurerm_resource_group" "rg" {
   name     = "RG-AzureDevOps2"
   location = var.location
