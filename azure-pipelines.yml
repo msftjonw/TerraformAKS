@@ -19,7 +19,7 @@ steps:
     backendAzureRmResourceGroupName: 'RG-Terraform'
     backendAzureRmStorageAccountName: jonwterraformstorage
     backendAzureRmContainerName: terraformstate
-    backendAzureRmKey: 'UcxyiThFntiiF/cqXUruyrNiOApgsNjq2dTaEHk2cghtWot5TceJRoDiIEgzNJuzJYAbK6nO/3n14IJVOaH62Q=='
+    backendAzureRmKey: $(tfstoragesecret)
 
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
   displayName: 'Terraform : PLAN'
