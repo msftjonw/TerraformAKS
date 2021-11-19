@@ -8,7 +8,7 @@ terraform {
     resource_group_name  = "RG-Terraform"
     storage_account_name = "jonwterraformstorage"
     container_name       = "terraformstate"
-    key                  = $(tfstoragesecret)
+    key                  = $(mySecret)
   }
 
 }
