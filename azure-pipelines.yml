@@ -9,7 +9,19 @@ steps:
 - task: TerraformInstaller@0
   inputs:
     terraformVersion: '0.12.3'
-    
+
+- task: AzureKeyVault@2
+  inputs:
+    azureSubscription: 'jonwterraformsp-ARM'
+    KeyVaultName: 'jonwterraformkv'
+    SecretsFilter: 'jonwterraformstoragekey'
+    RunAsPreJob: true
+
+- bash: |
+    echo "Secret Found! $MY_MAPPED_ENV_VAR"        
+  env:
+    MY_MAPPED_ENV_VAR: $(mySecret)
+
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
   displayName: 'Terraform : INIT'
   inputs:
@@ -19,7 +31,9 @@ steps:
     backendAzureRmResourceGroupName: 'RG-Terraform'
     backendAzureRmStorageAccountName: jonwterraformstorage
     backendAzureRmContainerName: terraformstate
-    backendAzureRmKey: $(tfstoragesecret)
+    backendAzureRmKey: $(mySecret)
+  env:
+    mySecret: $(jonwterraformstoragekey)
 
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
   displayName: 'Terraform : PLAN'
