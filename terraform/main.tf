@@ -3,14 +3,7 @@ terraform {
   required_providers {
     azurerm = "2.52.0"
   }
-  
-  backend "azurerm" {
-    resource_group_name  = "RG-Terraform"
-    storage_account_name = "jonwterraformstorage"
-    container_name       = "terraformstate"
-    key                  = $(mySecret)
-  }
-
+ 
 }
 
 # Configure the Microsoft Azure Provider
